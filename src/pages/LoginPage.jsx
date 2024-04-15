@@ -1,5 +1,3 @@
-/** @format */
-
 import React, { useContext, useEffect, useState } from "react";
 import Appcontext from "../context/Appcontext";
 import { Alert, Snackbar } from "@mui/material";
@@ -23,7 +21,7 @@ const LoginPage = () => {
    }, [userEmail]);
 
    //    data take locally from the localStorage
-   const userList = JSON.parse(localStorage.getItem("user_list"));
+   const userList = JSON.parse(localStorage.getItem("user_list")) || [];
    const handleLogin = () => {
       if (email.length > 0) {
          const temp = [...userList];
