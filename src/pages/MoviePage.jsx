@@ -40,11 +40,13 @@ const MoviePage = () => {
             );
             if (res.ok) {
                const data = await res.json();
-               setMoviesDetails(data);
-               if (userEmail) {
-                  const userMovieIds = userMovies.map((movie) => movie.imdbID);
-                  const isAlreadyExist = userMovieIds.includes(data?.imdbID);
-                  setAlreadyExist(isAlreadyExist);
+               if(data?.Response === "True"){
+                  setMoviesDetails(data);
+                  if (userEmail) {
+                     const userMovieIds = userMovies.map((movie) => movie.imdbID);
+                     const isAlreadyExist = userMovieIds.includes(data?.imdbID);
+                     setAlreadyExist(isAlreadyExist);
+                  }
                }
             }
          } catch (err) {

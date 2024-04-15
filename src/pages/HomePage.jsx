@@ -238,8 +238,13 @@ const HomePage = () => {
             const res = await fetch(`http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}&s=${searchText}`);
             if(res.ok){
                const data = await res.json();
-               setMoviesData(data?.Search);
-               setMoviesList(data?.Search);
+               if(data?.Response === "True"){
+                  setMoviesData(data?.Search);
+                  setMoviesList(data?.Search);
+               }else{
+                  setNotificationMessage("Please enter a valid tittle.");
+                  setOpenNotification(true);
+               }
             }
       } catch (err) {
          console.error("error in searching ..", err);
